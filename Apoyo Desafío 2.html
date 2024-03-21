@@ -19,7 +19,7 @@
     ];
 
     var traumatologia = [
-        { hora: '8:00', especialista: 'MARIA PAZ ALTUZARRA', paciente: 'PAULA SANCHEZ', rut: '15554774-5', prevision: 'FONASA' },
+        { hora: '08:00', especialista: 'MARIA PAZ ALTUZARRA', paciente: 'PAULA SANCHEZ', rut: '15554774-5', prevision: 'FONASA' },
         { hora: '10:00', especialista: 'RAUL ARAYA', paciente: 'ANGÉLICA NAVAS', rut: '15444147-9', prevision: 'ISAPRE' },
         { hora: '10:30', especialista: 'MARIA ARRIAGADA', paciente: 'ANA KLAPP', rut: '17879423-9', prevision: 'ISAPRE' },
         { hora: '11:00', especialista: 'ALEJANDRO BADILLA', paciente: 'FELIPE MARDONES', rut: '1547423-6', prevision: 'ISAPRE' },
@@ -29,7 +29,7 @@
     ];
 
     var dental = [
-        { hora: '8:30', especialista: 'ANDREA ZUÑIGA', paciente: 'MARCELA RETAMAL', rut: '11123425-6', prevision: 'ISAPRE' },
+        { hora: '08:30', especialista: 'ANDREA ZUÑIGA', paciente: 'MARCELA RETAMAL', rut: '11123425-6', prevision: 'ISAPRE' },
         { hora: '11:00', especialista: 'MARIA PIA ZAÑARTU', paciente: 'ANGEL MUÑOZ', rut: '9878789-2', prevision: 'ISAPRE' },
         { hora: '11:30', especialista: 'SCARLETT WITTING', paciente: 'MARIO KAST', rut: '7998789-5', prevision: 'FONASA' },
         { hora: '13:00', especialista: 'FRANCISCO VON TEUBER', paciente: 'KARIN FERNANDEZ', rut: '18887662-K', prevision: 'FONASA' },
@@ -65,7 +65,32 @@
    //imprimir listado total de pacientes
    var totalpacientes = dental.concat(radiologia, traumatologia);
    let total = totalpacientes.filter(nombre => nombre.paciente);
-   document.write(total);
+
+   const imprimirAllVisits = total.map(visita =>{
+    return "<p>" + visita.paciente; "</p>"
+   });
+   document.write(imprimirAllVisits);
+
+   // imprimir listado de paciente dental por isapre
+var pacienteisapre = "<p> Pacientes dental con Isapre </p>"
+for(var paciente of dental){
+        if(paciente.prevision === 'ISAPRE'){
+        // pacienteisapre += "<p>" + paciente.paciente + paciente.prevision + "</p>"
+        pacienteisapre += `<p>${paciente.paciente} - ${paciente.prevision}</p>`;
+        };
+    };
+document.write(pacienteisapre);
+
+  
+//imprimir listado de paciente traumatologia por fonasa
+var pacientefonasa = "<p> Pacientes Traumatologia con Fonasa"
+for(var paciente of traumatologia){
+    if(paciente.prevision === 'FONASA'){
+        pacientefonasa += `<p>${paciente.paciente} - ${paciente.prevision}`;
+    };
+};
+document.write(pacientefonasa);
+   
     //Agregar código para el desafio 2 aquí
 
     document.write(`<p>Cantidad de atenciones para Radiología: ${radiologia.length}</p>`);
